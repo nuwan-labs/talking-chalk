@@ -404,6 +404,8 @@ export default function App() {
       
     } catch(e: any) { 
       console.error(e);
+      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'err', data: { error: e.message || e.toString() } }]);
+      setRawStream("");
       setArtistState("error"); 
       setArtistThought(`Oops: ${e.message || e.toString()}`); 
     } finally {
@@ -476,8 +478,8 @@ export default function App() {
           {apiLog.map((logItem, idx) => (
              <div key={idx} className="bg-[#151a17] p-3 rounded-md border border-slate-800/80 shadow-sm">
                 <div className="text-slate-500 mb-2 pb-2 border-b border-slate-800/80 flex justify-between items-center">
-                  <span className={`text-[10px] tracking-wider font-bold ${logItem.type === 'req' ? 'text-blue-400' : 'text-emerald-400'}`}>
-                    {logItem.type === 'req' ? 'OUTGOING REQUEST' : 'RESPONSE COMPLETE'}
+                  <span className={`text-[10px] tracking-wider font-bold ${logItem.type === 'req' ? 'text-blue-400' : logItem.type === 'err' ? 'text-red-400' : 'text-emerald-400'}`}>
+                    {logItem.type === 'req' ? 'OUTGOING REQUEST' : logItem.type === 'err' ? 'API ERROR' : 'RESPONSE COMPLETE'}
                   </span>
                   <span className="text-[9px] opacity-40">{logItem.time}</span>
                 </div>
