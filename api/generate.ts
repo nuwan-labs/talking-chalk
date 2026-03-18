@@ -36,7 +36,7 @@ export default async function handler(req: any, res: any) {
 
   try {
     const responseStream = await ai.models.generateContentStream({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.1-pro-preview",
       contents: [
         { inlineData: { mimeType: "image/jpeg", data: image } },
         `Look at the chalkboard. A child is drawing. Add 1 to 3 simple, fun chalk strokes to continue their drawing or add a playful detail. DO NOT draw a complete picture.`
