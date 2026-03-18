@@ -397,7 +397,9 @@ export default function App() {
         }
       }
       
-      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'res', data: { status: 'Stream completed', totalBytes: buffer.current.length } }]);
+      let finalData: any = buffer.current;
+      try { finalData = JSON.parse(buffer.current); } catch(e) {}
+      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'res', data: finalData }]);
       setRawStream("");
       
     } catch(e: any) { 
