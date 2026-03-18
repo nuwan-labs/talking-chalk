@@ -62,10 +62,11 @@ Always use phase 3 (Defining Strokes) or 5 (Detail) so it's visible.
 
 CRITICAL RULES:
 - Keep it extremely simple. 1 to 3 strokes max.
+- Limit all number values to a maximum of 3 decimal places (e.g. 0.255). NEVER generate long or infinite decimals!
 - Start the JSON array immediately. No preamble.`,
         responseMimeType: "application/json",
         responseSchema: strokeSchema,
-        temperature: 0.8,
+        temperature: 0.4,
       }
     });
 
