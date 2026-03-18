@@ -201,6 +201,8 @@ export default function App() {
   const [artistState, setArtistState] = useState("idle"); // idle, thinking, drawing, done, error
   const [artistThought, setArtistThought] = useState("Draw something to wake me up...");
   const [log, setLog] = useState<any[]>([]);
+  const [apiLog, setApiLog] = useState<any[]>([]);
+  const [rawStream, setRawStream] = useState<string>("");
 
   // Concurrency Refs
   const strokeQueue = useRef<any[]>([]);
@@ -364,6 +366,9 @@ export default function App() {
 
       const img = canvasRef.current!.toDataURL("image/jpeg", 0.6).split(",")[1];
 
+      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'req', data: { image: img.substring(0, 40) + "...[base64 truncated]" } }]);
+      setRawStream("");
+
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -385,11 +390,15 @@ export default function App() {
         const { value, done } = await reader.read();
         if (done) break;
         buffer.current += decoder.decode(value, { stream: true });
+        setRawStream(buffer.current);
         const newStrokes = parseStream();
         if (newStrokes.length > 0) {
           strokeQueue.current.push(...newStrokes);
         }
       }
+      
+      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'res', data: { status: 'Stream completed', totalBytes: buffer.current.length } }]);
+      setRawStream("");
       
     } catch(e: any) { 
       console.error(e);
@@ -405,8 +414,8 @@ export default function App() {
   };
 
   return(
-    <div className="min-h-screen bg-[#1a201c] flex items-center justify-center p-6 font-mono text-slate-300">
-      <div className="flex flex-col items-center gap-4 w-full max-w-[840px]">
+    <div className="min-h-screen bg-[#1a201c] flex items-start justify-center p-6 font-mono text-slate-300 gap-6">
+      <div className="flex flex-col items-center gap-4 w-full max-w-[840px] shrink-0">
         
         <div className="w-full flex justify-between items-baseline pb-3 border-b border-slate-700">
           <span className="font-serif italic text-2xl text-slate-200 tracking-wide">Magic Slate</span>
@@ -450,6 +459,45 @@ export default function App() {
           </div>
         )}
       </div>
+
+      {/* Debug Panel */}
+      <div className="w-[450px] h-[675px] bg-[#111] border border-slate-800 rounded-sm hidden xl:flex flex-col overflow-hidden shadow-2xl mt-14">
+        <div className="p-3 border-b border-slate-800 bg-[#151a17] flex justify-between items-center shrink-0">
+          <span className="text-[10px] uppercase tracking-widest text-emerald-500 font-bold flex items-center gap-2">
+            <span className={`w-2 h-2 rounded-full ${isStreaming.current ? 'bg-amber-400 animate-pulse shadow-[0_0_8px_#fbbf24]' : 'bg-emerald-500'}`}></span>
+            API Debug Stream
+          </span>
+          <button onClick={() => { setApiLog([]); setRawStream(""); }} className="text-[9px] text-slate-500 hover:text-white uppercase tracking-widest transition-colors">Clear Log</button>
+        </div>
+        
+        <div className="flex-1 overflow-y-auto p-4 custom-scrollbar flex flex-col gap-4 bg-[#0a0a0a]">
+          {apiLog.map((logItem, idx) => (
+             <div key={idx} className="bg-[#151a17] p-3 rounded-md border border-slate-800/80 shadow-sm">
+                <div className="text-slate-500 mb-2 pb-2 border-b border-slate-800/80 flex justify-between items-center">
+                  <span className={`text-[10px] tracking-wider font-bold ${logItem.type === 'req' ? 'text-blue-400' : 'text-emerald-400'}`}>
+                    {logItem.type === 'req' ? 'OUTGOING REQUEST' : 'RESPONSE COMPLETE'}
+                  </span>
+                  <span className="text-[9px] opacity-40">{logItem.time}</span>
+                </div>
+                <div className="whitespace-pre-wrap text-slate-400 font-mono text-[10px] leading-relaxed">
+                  {JSON.stringify(logItem.data, null, 2)}
+                </div>
+             </div>
+          ))}
+          
+          {isStreaming.current && rawStream && (
+            <div className="bg-[#151a17] p-3 rounded-md border border-amber-900/40 shadow-[0_0_15px_rgba(251,191,36,0.03)] animate-fade-in">
+              <div className="text-amber-500/60 mb-2 pb-2 border-b border-amber-900/40 text-[9px] uppercase tracking-widest flex items-center gap-2">
+                <span className="animate-pulse">Receiving Chunks...</span>
+              </div>
+              <div className="whitespace-pre-wrap text-amber-400/90 font-mono text-[10px] leading-relaxed break-all">
+                {rawStream}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
       <style>{`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(2px); }
