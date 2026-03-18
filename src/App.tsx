@@ -347,6 +347,40 @@ export default function App() {
     }
   };
 
+  // ── ElevenLabs Filler Audio ───────────────────────────────────────────────
+  const FILLER_PHRASES = [
+    "Hmm... let's see here.",
+    "Oh, I love what you're drawing!",
+    "What is that? Let me think...",
+    "Wow, that's really creative!",
+    "Hold on, let me add some magic..."
+  ];
+
+  const playFillerAudio = async () => {
+    try {
+      const phrase = FILLER_PHRASES[Math.floor(Math.random() * FILLER_PHRASES.length)];
+      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'req', data: { service: "ElevenLabs", text: phrase } }]);
+      
+      const res = await fetch('/api/speak', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: phrase })
+      });
+      
+      if (!res.ok) throw new Error(await res.text());
+      
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const audio = new Audio(url);
+      audio.play();
+
+      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'res', data: { service: "ElevenLabs", status: "Audio Playing" } }]);
+    } catch(e: any) {
+      console.error("Audio error:", e);
+      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'err', data: { error: e.message || "ElevenLabs Audio failed" } }]);
+    }
+  };
+
   // ── AI Turn Trigger ───────────────────────────────────────────────────────
   const triggerAITurn = async () => {
     const ctx = canvasRef.current?.getContext("2d");
@@ -359,6 +393,9 @@ export default function App() {
     
     setArtistState("thinking");
     setArtistThought("Hmm, what should we add?");
+    
+    // Speak immediately without awaiting so it fills silence while Gemini fetches!
+    playFillerAudio();
 
     try {
       isStreaming.current = true;
