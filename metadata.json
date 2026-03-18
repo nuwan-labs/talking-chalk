@@ -1,0 +1,5 @@
+{
+  "name": "Remix: Remix: Chalkboard Agent",
+  "description": "An AI agent that plans, draws, and verifies chalkboard sketches stroke by stroke.",
+  "requestFramePermissions": []
+}
