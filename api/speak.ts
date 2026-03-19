@@ -15,7 +15,7 @@ export default async function handler(req: any, res: any) {
   // A default playful/optimistic voice. 
   // '21m00Tcm4TlvDq8ikWAM' is Rachel, a universally available free-tier voice.
   // Can be swapped out for a fully custom cloned voice later.
-  const voiceId = "21m00Tcm4TlvDq8ikWAM";
+  const voiceId = "pqHfZKP75CvOlQylNhV4"; // "Bill" (A verified free-tier whitelisted voice for this API key)
   
   try {
     const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
