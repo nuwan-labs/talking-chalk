@@ -12,9 +12,10 @@ export default async function handler(req: any, res: any) {
     return res.status(500).json({ error: 'Missing ElevenLabs API Key in Vercel environment' });
   }
 
-  // A default playful/optimistic voice (e.g. Adam or Gigi). 
+  // A default playful/optimistic voice. 
+  // '21m00Tcm4TlvDq8ikWAM' is Rachel, a universally available free-tier voice.
   // Can be swapped out for a fully custom cloned voice later.
-  const voiceId = "pNInz6obpgDQGcFmaJcg";
+  const voiceId = "21m00Tcm4TlvDq8ikWAM";
   
   try {
     const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
