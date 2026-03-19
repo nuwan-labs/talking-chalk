@@ -376,8 +376,21 @@ export default function App() {
 
       setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'res', data: { service: "ElevenLabs", status: "Audio Playing" } }]);
     } catch(e: any) {
-      console.error("Audio error:", e);
-      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'err', data: { error: e.message || "ElevenLabs Audio failed" } }]);
+      console.warn("ElevenLabs failed, falling back to Browser TTS:", e);
+      setApiLog(prev => [...prev, { time: new Date().toLocaleTimeString(), type: 'err', data: { error: "ElevenLabs quota/error. Using Free Browser TTS Fallback." } }]);
+      
+      // Fallback to Window Speech Synthesis
+      try {
+        const phrase = FILLER_PHRASES[Math.floor(Math.random() * FILLER_PHRASES.length)]; // Safe fallback if phrase somehow undefined
+        const synth = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(phrase);
+        utterance.pitch = 1.2;
+        utterance.rate = 1.05;
+        const voices = synth.getVoices();
+        const preferred = voices.find(v => v.name.includes("Google") || v.name.includes("Zira") || v.name.includes("Samantha"));
+        if (preferred) utterance.voice = preferred;
+        synth.speak(utterance);
+      } catch (fallbackErr) {}
     }
   };
 
