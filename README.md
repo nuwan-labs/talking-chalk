@@ -4,11 +4,13 @@ A real-time AI co-creation canvas where you draw on a chalkboard and an AI compa
 
 ## Screenshots
 
-| Drawing together | The AI adds details |
-|---|---|
-| ![Magic Slate - cow at piano](screenshots/magic-1.jpg) | ![Magic Slate - grazing animal](screenshots/magic-2.jpg) |
+These drawings were generated entirely by the AI on the chalkboard canvas.
 
-![Magic Slate - detailed animal sketch](screenshots/magic-3.jpg)
+| | |
+|---|---|
+| ![AI-generated chalk drawing](screenshots/magic-1.jpg) | ![AI-generated chalk drawing](screenshots/magic-2.jpg) |
+
+![AI-generated chalk drawing](screenshots/magic-3.jpg)
 
 ## How It Works
 
