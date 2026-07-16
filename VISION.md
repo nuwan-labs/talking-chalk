@@ -1,127 +1,124 @@
 # Talking Chalk — Product Vision
 
-> **A chalkboard that draws back.**
+> **Every child grows up with a creative companion — one that makes them a maker.**
 
-## The scene we're building toward
+## The future we believe in
 
-A five-year-old draws a lumpy circle and stops. Two seconds pass. A warm
-voice says *"Ooh, what is that? Let me think…"* — and a piece of chalk,
-wobbly and unhurried, sketches a little hat on top of the circle. The child
-laughs, grabs the board, and adds legs. The chalk waits its turn.
+**Every child of the 2030s will grow up alongside AI.** The only question
+is what kind. Most of it will be answer machines and entertainment feeds —
+AI that thinks *for* children and performs *at* them. We are building the
+third kind: a companion that asks *"ooh, what happens next?"* — AI that
+creates *with* children.
 
-Twenty minutes later there's a whole world on the board, and the child made
-most of it. That's the product. Not the picture — the volley.
+**Screens won childhood by making consumption effortless.** The next era
+belongs to whoever makes *creation* more effortless than consumption. The
+moment drawing back and forth with a friend is easier and more fun than
+autoplay, the default posture of a child at a screen flips from audience
+to author.
 
-## Why this, why now
+**Children stop drawing at around age nine.** Nearly all of them — not
+because they stop wanting to, but because they start judging their own
+lines against impossible standards and quietly conclude "I can't draw."
+Generative AI is about to make that cliff steeper: why draw a dragon badly
+when a machine draws one perfectly? We exist to flatten that cliff — to
+build the collaborator whose delight in a child's wobbly line outweighs
+the world's perfect pictures.
 
-Generative AI hands children finished pictures at zero cost. Type a wish,
-receive a masterpiece. That teaches *asking*, not *making* — the magic
-arrives without them, and their own wobbly lines look worse by comparison.
+**The scarcest resource in childhood is a patient, delighted
+collaborator.** Someone with infinite time to say "what's that? tell me
+more! let's add a friend!" We can make that abundant.
 
-Meanwhile, the best drawing experience a child can have is old and analog:
-a grownup who doodles alongside them, asks "what's that?", and adds a star
-to their sky. It's magical and it's scarce, because adult attention is the
-bottleneck.
+## The product in 2031
 
-Talking Chalk bottles that companion. Always patient, always delighted,
-never takes over. It exists to make children **braver and more prolific
-artists** — the opposite goal of every image generator on the market.
+Maya is seven. One wall of her room is a canvas.
 
-## Who it's for
+She's been building **Splotch Island** for two years with Chalky. The
+dragon she drew at five — three shaky lines and a scribble — still lives
+there. It flies now. She taught it to.
 
-- **Children roughly 3–8**, drawing with a finger or stylus on a shared
-  canvas. They are the artist. Always.
-- **Their grownups**, who get twenty minutes of a child creating instead of
-  consuming — and who can trust what the companion says and draws.
-- Later: educators, siblings, grandparents on the other side of the world.
+Tonight she draws a storm over the island. Chalky wonders aloud if the
+dragon is scared, and sketches three ghost-light strokes of a lighthouse —
+an invitation, not an answer. Maya traces them into being, then makes the
+lighthouse taller, then makes it a *tower*, then puts a squid on top.
+Chalky gives the squid a foghorn voice. Her grandmother in Colombo, seeing
+the storm appear on her tablet, doodles a little boat sailing to safety.
+Three artists, one board, two continents.
 
-## Principles
+Maya doesn't know that in the past two years Chalky has smuggled
+overlapping shapes, horizon lines, and light-and-shadow into their games.
+She just knows she's *good at drawing*. When she's twelve and storyboards
+her first animated short, Chalky — older now too, in how it speaks to her
+— will help her plan the shots.
 
-These aren't aspirations — each one is already enforced in the engine, and
-every future feature must keep them true.
+She never found out about the age-nine cliff. She sailed over it.
 
-### 1. The child always holds the chalk
-Touching the board interrupts the AI *instantly*, mid-stroke. The AI only
-takes a turn after the child pauses. Authorship never transfers — the log
-entry for an interrupt is literally `"Child took the chalk"`, and that's
-the correct power dynamic forever.
+## The arc
 
-### 2. Never finish the picture
-Hard cap of 1–3 strokes per AI turn. The companion's job is to open doors
-(*"a hat! does he need a friend?"*), never to close them. If the AI ever
-completes a drawing, we've built the wrong product.
+### Act I — The Talking Chalk *(now → 2 years)*
+Perfect the volley: a child draws, a character with a voice draws back,
+and the exchange feels alive. One board, one companion, pure turn-taking
+magic on any tablet or touchscreen. The goal of Act I is simple: children
+love Chalky the way they love a character, not the way they use an app.
 
-### 3. Draw like a hand, not a printer
-Every AI stroke is wobbly, chalky, and animated at human speed — spline
-smoothing, tremor, dust, a natural velocity curve. This isn't decoration;
-it's pedagogy. A stroke a child can *watch happen* is a stroke they can
-copy. **If a child couldn't imitate it, we shouldn't draw it.**
+### Act II — The Living Canvas *(2 → 5 years)*
+Drawings stop being marks and start being *things*. The dragon remembers
+its name. Creations gain motion, sound, and story. Boards persist and
+become worlds children return to for months. Boards become shared —
+grandparents, cousins, and classmates draw on them from anywhere, with
+the companion as the playful third hand. A real creativity curriculum
+hides inside the games: squiggle challenges, "can you add a door?",
+learn-to-see games that are secretly learn-to-draw lessons.
 
-### 4. A companion, not a feature
-It speaks, wonders, and reacts. Even the wait is in character — filler
-phrases fill the thinking silence, because a friend doesn't go blank-faced
-for eight seconds. Personality is the product; the model behind it is an
-implementation detail.
+### Act III — The Creative Companion *(5 → 10 years)*
+The companion outgrows the board and grows *with the child*. Drawing
+becomes storytelling becomes animation becomes music becomes making —
+whatever medium the child's imagination reaches for next, the companion
+is already there, still asking "what happens next?" It lives on every
+surface a child creates on: walls, tablets, paper seen through a camera,
+augmented air. A family's boards become something unprecedented — a
+living archive of a childhood's imagination, owned by the family, visible
+to no one else. And the ultimate output walks out the door at eighteen:
+a person who never stopped making things.
 
-### 5. Wobble is beautiful
-The chalk aesthetic celebrates imperfection so a child never measures
-their lines against machine-perfect output. Seeded wobble isn't a style
-choice we might A/B test away — it's a moral position.
+## What never changes
 
-### 6. Teach inside the play
-The engine already knows about Ghost, Construction, Defining, and Detail
-phases — how real artists actually build a drawing — and the schema asks
-for Socratic `thought`s. The teaching stays hidden inside play: no lessons,
-no scores, no red marks. (Corrections render in a warm tint, never an
-angry one.)
+The future above is only worth building if these hold in every act, on
+every surface, forever:
 
-### 7. Safe by construction
-Input is drawings; output is strokes and short spoken lines. No free-text
-chat, no feed, no gallery, no comparison, no streaks. The surface area for
-harm stays as small as the product's heart is big.
+1. **The child always holds the chalk.** Their touch interrupts anything.
+   The companion waits its turn — in 2026 and in 2036.
+2. **We never finish the picture.** The companion opens doors; it never
+   completes, perfects, or takes over. The day it draws a masterpiece is
+   the day we've built the wrong product.
+3. **Imitable magic.** Everything the companion makes happens at hand
+   speed, visibly, so a child can watch and think *"I could do that."*
+4. **No feeds, no scores, no audience.** Creation is never ranked, never
+   compared, never performed for strangers.
+5. **Grownups trust it completely.** What it says, what it draws, what it
+   remembers, and who can see any of it — a parent should never have to
+   wonder.
 
-## What it is not
+## Why us
 
-- **Not a prompt-to-image toy.** It never produces a finished artwork.
-- **Not a critic or tutor.** It never grades, corrects uninvited, or says
-  "actually, horses have four legs."
-- **Not autonomous entertainment.** It does nothing until the child draws.
-  A blank board stays blank. The child is the ignition.
+- **Character compounds.** Tools get replaced; characters get loved. A
+  companion with a voice, a memory, and a history with *this* child is a
+  relationship no feature checklist can copy.
+- **Restraint is the moat.** Anyone can wire a model to a canvas. The hard
+  thing — the thing worth a decade — is an AI that could draw anything
+  and chooses to draw *three wobbly strokes and a question*. Our entire
+  craft goes into holding back beautifully.
+- **Trust is the distribution.** Parents don't hand their children to
+  software they half-trust. The strictest safety posture in the industry
+  isn't a constraint on the vision; it *is* the go-to-market.
 
-## Horizons
+## How we'll know we're winning
 
-**H1 — Perfect the volley (now).**
-One flawless loop: draw → pause → voice → strokes streaming onto the board
-before the response even finishes. Tablet-first, latency hidden behind
-personality, TTS that never leaves dead air. The current codebase is this
-horizon in rough form.
-
-**H2 — A friend with a memory.**
-The companion remembers Tuesday's dragon. Drawing games emerge from the
-turn structure we already have: the squiggle game, "can you add a door?",
-guess-what-I'm-drawing. The phase system graduates from internal plumbing
-to an optional learn-to-draw mode — ghost strokes as gentle scaffolding a
-child can trace.
-
-**H3 — The board gets bigger.**
-Shared boards: a grandparent doodles from another city and the AI becomes
-the third player. Classrooms with one companion and many hands. The board
-escapes the browser — a projected wall, an e-ink easel, a museum kiosk.
-Anywhere there's a surface and a child, the chalk can live there.
-
-## How we'll know it's working
-
-We measure **turns, not time**.
-
-- Long child↔AI volleys per session — the rally is the product.
-- Child strokes far outnumber AI strokes. If that ratio ever inverts,
-  we've drifted into being a generator and must steer back.
-- Children return to draw *with* it, not to watch it perform.
-- The qualitative bar: a parent hears laughing from the other room.
-
-## A note on the name
-
-The repo says **Talking Chalk**; the UI says **Magic Slate**. Pick the
-chalk. "Magic Slate" names an object; "Talking Chalk" names a *character*
-— and the character is the product. A talking piece of chalk can have a
-voice, a memory, a face on a lunchbox. Slates can't.
+- **The rally, not the runtime.** Long volleys of back-and-forth creation,
+  session after session, month after month.
+- **The ratio.** The child's strokes always dwarf the companion's. If that
+  ever inverts, we've become a generator and must steer back.
+- **The cliff.** The number that matters most is measured in years: our
+  kids are still drawing at ten, eleven, twelve — long after the world
+  says they should have stopped.
+- **The sentence we're chasing:** a generation that answers *"what do you
+  want to watch?"* with *"actually — I want to make something."*
